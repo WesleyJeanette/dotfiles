@@ -38,6 +38,7 @@ Plug 'airblade/vim-gitgutter'
 "  Plug 'zchee/deoplete-go', { 'do': 'make' }
 "endif               " Helpful plugin for Golang dev
 Plug 'posva/vim-vue'
+"Plug Raimondi/delimitMate "insert mode auto-complete quotes, parens,...
 "Plug 'christoomey/vim-tmux-navigator'
 "Plug 'kshenoy/vim-signature'  "mark list
 "Plug 'ekalinin/Dockerfile.vim'
@@ -254,10 +255,13 @@ nmap <M-w> <Esc>:w<cr>
 nmap ∑ <Esc>:w<cr>
 imap <M-w> <Esc>:w<cr>
 imap ∑ <Esc>:w<cr>
+nmap <leader>ws <Esc>:mksession! notesSession.vimess<cr>
 
 "" file quiet M-q and on mac that maps to œ
 nmap <M-q> <Esc>:q<cr>
 nmap œ <Esc>:q<cr>
+nmap <M-Q> <Esc>:q!<cr>
+nmap Œ <Esc>:q!<cr>
 
 "" quickly Open vimrc
 nmap <silent> <leader>ev :edit $MYVIMRC<cr>
@@ -284,6 +288,8 @@ command! -bang -nargs=* Find call fzf#vim#grep( 'rg --column --line-number --no-
 command! -bang -nargs=* DirOpen call fzf#vim#files(expand('%:p:h'))
 
 let $FZF_DEFAULT_OPTS = '--bind up:preview-up,down:preview-down'
+
+nmap <leader>; ,
 
 nnoremap <F2> :UndotreeToggle<cr>
 nmap <F3> :NERDTreeToggle<CR>
@@ -338,6 +344,16 @@ nmap <c-k> <c-w>k
 nmap <c-h> <c-w>h
 nmap <c-l> <c-w>l
 
+"" resize splits
+" nmap ∆ <c-w>5- "M-j
+" nmap ˚ <c-w>5+ "M-k
+" nmap ˙ <c-w>5< "M-h
+" nmap ¬ <c-w>5> "M-l
+" nmap <M-j> <c-w>5-
+" nmap <M-k> <c-w>5+
+" nmap <M-h> <c-w>5<
+" nmap <M-l> <c-w>5>
+
 nnoremap <c-e> 10<c-e>
 nnoremap <c-y> 10<c-y>
 
@@ -372,3 +388,5 @@ augroup BgHighlight
     autocmd WinLeave * set nocul
     autocmd WinLeave * set norelativenumber
 augroup END
+
+" to format xml -> :%s/></>\r</g then gg=G
