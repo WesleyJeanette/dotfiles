@@ -33,6 +33,7 @@ Plug 'mbbill/undotree'
 Plug 'svermeulen/vim-easyclip' " simplified clipboard functionality (look into)
 "Plug 'tpope/vim-git'
 "Plug 'tpope/vim-dispatch'         " Allow background builds
+"Plugin 'wesQ3/vim-windowswap'
 Plug 'airblade/vim-gitgutter'
 "if has('nvim')
 "  Plug 'zchee/deoplete-go', { 'do': 'make' }
@@ -169,7 +170,8 @@ if has("persistent_undo")
   set undofile
 endif
 
-let g:undotree_WindowLayout = 2
+let g:undotree_WindowLayout = 4
+let g:undotree_SetFocusWhenToggle = 1
 
 ""------------------------------------------------------------------------------
 "" APPEARANCE
@@ -301,6 +303,11 @@ nmap <F8> :TagbarOpenAutoClose<CR>
 "toggle ignorecase
 nmap <F9> :set ignorecase! ignorecase?
 
+command! -nargs=* RunSilent
+      \ | execute ':silent !'.'<args>'
+      \ | execute ':redraw!'
+nmap <Leader>pc :RunSilent pandoc -o /tmp/vim-pandoc-out.pdf %<CR>
+nmap <Leader>pp :RunSilent open /tmp/vim-pandoc-out.pdf<CR>
 
 "" spelling ]s moves to next [s moves to prev. z= suggests spelling changes
 hi clear SpellBad
