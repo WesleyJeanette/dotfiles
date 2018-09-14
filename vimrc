@@ -26,6 +26,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'milkypostman/vim-togglelist'
+Plug 'liuchengxu/vim-which-key'
 "Plug 'tpope/vim-surround'         " surround text objects
 Plug 'tpope/vim-unimpaired'       "
 Plug 'tpope/vim-repeat'       "
@@ -40,7 +41,7 @@ Plug 'airblade/vim-gitgutter'
 "endif               " Helpful plugin for Golang dev
 Plug 'posva/vim-vue'
 "Plug Raimondi/delimitMate "insert mode auto-complete quotes, parens,...
-"Plug 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 "Plug 'kshenoy/vim-signature'  "mark list
 "Plug 'ekalinin/Dockerfile.vim'
 "Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -103,6 +104,7 @@ endfunction
 autocmd FileType go nmap \c :<C-u>call <SID>toggle_coverage()<CR>
 
 let g:go_list_type = "quickfix"
+" Move the quick fix list to the bottom
 :autocmd FileType qf wincmd J
 
 
@@ -139,6 +141,10 @@ let g:tagbar_type_go = {
 let g:bufExplorerSortBy = 'mru'        " Sort by most recently used. (This is default)
 let g:bufExplorerShowRelativePath = 1  " Show relative paths.
 
+" zoom a vim pane, <C-w>= to re-balance
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+
+nnoremap <silent> <leader> :WhichKey ','<CR>
 ""-----------------------------------------------------------------------------
 "" RUBY CONFIG
 ""-----------------------------------------------------------------------------
@@ -173,6 +179,17 @@ endif
 let g:undotree_WindowLayout = 4
 let g:undotree_SetFocusWhenToggle = 1
 
+""------------------------------------------------------------------------------
+"" vim-tmux-navigator
+""------------------------------------------------------------------------------
+" let g:tmux_navigator_no_mappings = 1
+let g:tmux_navigator_disable_when_zoomed = 1
+
+" nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+" nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+" nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+" nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+" nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
 ""------------------------------------------------------------------------------
 "" APPEARANCE
 ""------------------------------------------------------------------------------
@@ -346,10 +363,10 @@ set clipboard^=unnamed clipboard^=unnamedplus
 " set foldlevel=99
 
 "" remove the need to hit c-w for navigating splits
-nmap <c-j> <c-w>j
-nmap <c-k> <c-w>k
-nmap <c-h> <c-w>h
-nmap <c-l> <c-w>l
+" nmap <c-j> <c-w>j
+" nmap <c-k> <c-w>k
+" nmap <c-h> <c-w>h
+" nmap <c-l> <c-w>l
 
 "" resize splits
 " nmap ∆ <c-w>5- "M-j
