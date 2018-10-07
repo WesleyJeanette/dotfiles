@@ -1,0 +1,18 @@
+# Grab these files
+mkdir workspace
+cd workspace
+git clone https://github.com/WesleyJeanette/dotfiles.git``
+
+# install vim
+sudo add-apt-repository ppa:jonathonf/vim
+sudo apt update
+sudo apt intall vim
+
+# install awesomewm
+sudo apt-get install awesome
+vim ~/.xinitrc
+  exec awesome
+
+mkdir ~/.config/awesome
+# base rc.lua should become dot files version.
+cp /etc/xdg/awesome/rc.lua ~/.config/awesome
