@@ -1,18 +1,26 @@
 # Grab these files
 mkdir workspace
 cd workspace
-git clone https://github.com/WesleyJeanette/dotfiles.git``
+git clone https://github.com/WesleyJeanette/dotfiles.git
+
+ln -sf ~/workspace/dotfiles/aliases ~/.aliases
+ln -sf ~/workspace/dotfiles/zshrc ~/.zshrc
+ln -sf ~/workspace/dotfiles/gitconfig ~/.gitconfig
+
 
 # install vim
 sudo add-apt-repository ppa:jonathonf/vim
 sudo apt update
 sudo apt intall vim
+ln -sf ~/workspace/dotfiles/vimrc ~/.vimrc
+
 # vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # install tmux
 sudo apt-get install tmux
+ln -sf ~/workspace/dotfiles/tmux.conf ~/.tmux.conf
 
 # install awesomewm
 sudo apt-get install awesome
