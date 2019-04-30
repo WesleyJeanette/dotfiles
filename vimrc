@@ -12,7 +12,7 @@ let mapleader = ","              " set leader
 "-----------------------------------------------------------------------------
 filetype off
 call plug#begin('~/.vim/plugged')
-Plug 'ctrlpvim/ctrlp.vim'         " Quick file navigation
+"Plug 'ctrlpvim/ctrlp.vim'         " Quick file navigation
 Plug 'tpope/vim-commentary'       " Quickly comment lines out and in
 Plug 'tpope/vim-fugitive'         " Help formatting commit messages
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
@@ -41,7 +41,7 @@ Plug 'airblade/vim-gitgutter'
 "endif               " Helpful plugin for Golang dev
 Plug 'posva/vim-vue'
 "Plug Raimondi/delimitMate "insert mode auto-complete quotes, parens,...
-Plug 'christoomey/vim-tmux-navigator'
+"Plug 'christoomey/vim-tmux-navigator'
 "Plug 'kshenoy/vim-signature'  "mark list
 "Plug 'ekalinin/Dockerfile.vim'
 "Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -49,6 +49,7 @@ Plug 'christoomey/vim-tmux-navigator'
 "Plug 'honza/vim-snippets'
 "Plug 'vim-syntastic/syntastic'
 Plug 'vim-scripts/scratch.vim'
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
 call plug#end()                   " Complete vunde initialization
 
 " detect file type, turn on that type's plugins and indent preferences
@@ -107,6 +108,7 @@ let g:go_list_type = "quickfix"
 " Move the quick fix list to the bottom
 :autocmd FileType qf wincmd J
 
+let g:pymode_python = 'python3'
 
 " easyclip
 let g:EasyClipShareYanks = 1
@@ -159,13 +161,13 @@ nnoremap <silent> <leader> :WhichKey ','<CR>
 ""-----------------------------------------------------------------------------
 "" CTRL-P CONFIG
 ""-----------------------------------------------------------------------------
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn|vagrant)|node_modules)$',
-  \ 'file': '\v\.(swp|zip|exe|so|dll|a)$',
-  \ }
-" stop setting git repo as root path
-let g:ctrlp_working_path_mode = ''
+" let g:ctrlp_show_hidden = 1
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir':  '\v[\/](\.(git|hg|svn|vagrant)|node_modules)$',
+"   \ 'file': '\v\.(swp|zip|exe|so|dll|a)$',
+"   \ }
+" " stop setting git repo as root path
+" let g:ctrlp_working_path_mode = ''
 
 set ignorecase " Do case insensitive matching
 set smartcase " Do smart case matching
@@ -243,9 +245,12 @@ autocmd BufWritePre * :%s/\s\+$//e " strip trailing whitespace on save
 autocmd BufLeave * silent! wall    " save on lost focus
 
 "" tab behavior
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+""set tabstop=4
+set tabstop=8
+""set softtabstop=4
+set softtabstop=8
+""set shiftwidth=4
+set shiftwidth=8
 set expandtab
 set smarttab
 
@@ -257,10 +262,11 @@ set ttimeoutlen=0
 "autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 expandtab
 
 "" Format JSON with jq
-"fun! PrettyJSON()
-"  %!jq .
-"  set filetype=json
-"endfun
+fun! PrettyJSON()
+  %!jq .
+  set filetype=json
+endfun
+command! PrettyJSON call PrettyJSON()
 
 ""------------------------------------------------------------------------------
 "" LEADER MAPPINGS
@@ -290,7 +296,7 @@ nmap <silent> <leader>ee :source $MYVIMRC<cr>
 " nmap ff :call fzf#run(fzf#wrap({
 "  \  ‘source’: ‘git ls-files --exclude-standard --others --cached,
 "  \  ‘sink’: ‘edit’
-"  \  }))<Enter>
+"  \  }3))<Enter>
 "" fzf and ripgrep
 nmap <leader>fo :Files<CR>
 nmap <leader>fb :Buffers<CR>
@@ -363,10 +369,10 @@ set clipboard^=unnamed clipboard^=unnamedplus
 " set foldlevel=99
 
 "" remove the need to hit c-w for navigating splits
-" nmap <c-j> <c-w>j
-" nmap <c-k> <c-w>k
-" nmap <c-h> <c-w>h
-" nmap <c-l> <c-w>l
+nmap <c-j> <c-w>j
+nmap <c-k> <c-w>k
+nmap <c-h> <c-w>h
+nmap <c-l> <c-w>l
 
 "" resize splits
 " nmap ∆ <c-w>5- "M-j
